@@ -17,3 +17,12 @@ heartsContainer.appendChild(heart);
 }
 
 });
+function playSong(songPath){
+
+const player = document.getElementById("player");
+
+player.src = songPath;
+
+player.play();
+
+}
