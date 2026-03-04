@@ -23,6 +23,10 @@ const player = document.getElementById("player");
 
 player.src = songPath;
 
-player.play();
+player.load();
+
+player.play().catch(function(error){
+console.log("Playback blocked:", error);
+});
 
 }
