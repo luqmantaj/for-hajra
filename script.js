@@ -23,13 +23,17 @@ const player = document.getElementById("player");
 const panel = document.getElementById("playerPanel");
 const titleEl = document.getElementById("playerTitle");
 
-player.src = songPath;
-player.load();
-player.play();
-
 titleEl.innerHTML = title + "<br><span style='font-size:0.8em;color:#bbb'>" + artist + "</span>";
 
 panel.classList.add("active");
+
+if(player.src.includes(songPath)){
+return;
+}
+
+player.src = songPath;
+player.load();
+player.play();
 
 }
 
@@ -51,20 +55,20 @@ btn.innerHTML = "▶";
 const player = document.getElementById("player");
 const progressBar = document.getElementById("progressBar");
 
-player.ontimeupdate = function(){
+player.addEventListener("timeupdate", function(){
 
 if(player.duration){
 progressBar.value = (player.currentTime / player.duration) * 100;
 }
 
-};
-progressBar.oninput = function(){
+});
+progressBar.addEventListener("input", function(){
 
 if(player.duration){
 player.currentTime = (progressBar.value / 100) * player.duration;
 }
 
-};
+});
 
 function closePlayer(){
 
