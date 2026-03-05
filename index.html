@@ -42,6 +42,23 @@ Every song here reminds me of you.
 
 
 </section>
+<div id="playerPanel" class="player-panel">
+
+<div class="player-content">
+
+<button class="close-btn" onclick="closePlayer()">✕</button>
+
+<img id="playerImage" src="https://picsum.photos/300">
+
+<h2 id="playerTitle">Song Title</h2>
+
+<button id="playPauseBtn" onclick="togglePlay()">⏸</button>
+
+<input type="range" id="progressBar" value="0">
+
+</div>
+
+</div>
 <audio id="player"></audio>
 
 <script src="script.js"></script>
