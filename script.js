@@ -17,14 +17,17 @@ heartsContainer.appendChild(heart);
 }
 
 });
-function playSong(songPath){
+function playSong(songPath,title,artist){
 
 const player = document.getElementById("player");
 const panel = document.getElementById("playerPanel");
+const titleEl = document.getElementById("playerTitle");
 
 player.src = songPath;
 player.load();
 player.play();
+
+titleEl.innerHTML = title + "<br><span style='font-size:0.8em;color:#bbb'>" + artist + "</span>";
 
 panel.classList.add("active");
 
@@ -34,11 +37,37 @@ panel.classList.add("active");
 function togglePlay(){
 
 const player = document.getElementById("player");
+const btn = document.getElementById("playPauseBtn");
 
 if(player.paused){
 player.play();
+btn.innerHTML = "⏸";
 }else{
 player.pause();
+btn.innerHTML = "▶";
 }
+
+}
+const player = document.getElementById("player");
+const progressBar = document.getElementById("progressBar");
+
+player.addEventListener("timeupdate", function(){
+
+progressBar.value = (player.currentTime / player.duration) * 100;
+
+});
+progressBar.addEventListener("input", function(){
+
+player.currentTime = (progressBar.value / 100) * player.duration;
+
+});
+
+function closePlayer(){
+
+const panel = document.getElementById("playerPanel");
+const player = document.getElementById("player");
+
+panel.classList.remove("active");
+player.pause();
 
 }
