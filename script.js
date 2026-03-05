@@ -55,20 +55,6 @@ btn.innerHTML = "▶";
 const player = document.getElementById("player");
 const progressBar = document.getElementById("progressBar");
 
-player.addEventListener("timeupdate", function(){
-
-if(player.duration){
-progressBar.value = (player.currentTime / player.duration) * 100;
-}
-
-});
-progressBar.addEventListener("input", function(){
-
-if(player.duration){
-player.currentTime = (progressBar.value / 100) * player.duration;
-}
-
-});
 
 function closePlayer(){
 
@@ -77,3 +63,23 @@ const panel = document.getElementById("playerPanel");
 panel.classList.remove("active");
 
 }
+const player = document.getElementById("player");
+const progressBar = document.getElementById("progressBar");
+
+function updateProgress(){
+
+if(player.duration){
+progressBar.value = (player.currentTime / player.duration) * 100;
+}
+
+}
+
+player.addEventListener("timeupdate", updateProgress);
+
+progressBar.addEventListener("input", function(){
+
+if(player.duration){
+player.currentTime = (progressBar.value / 100) * player.duration;
+}
+
+});
