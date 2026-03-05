@@ -51,23 +51,25 @@ btn.innerHTML = "▶";
 const player = document.getElementById("player");
 const progressBar = document.getElementById("progressBar");
 
-player.addEventListener("timeupdate", function(){
+player.ontimeupdate = function(){
 
+if(player.duration){
 progressBar.value = (player.currentTime / player.duration) * 100;
+}
 
-});
-progressBar.addEventListener("input", function(){
+};
+progressBar.oninput = function(){
 
+if(player.duration){
 player.currentTime = (progressBar.value / 100) * player.duration;
+}
 
-});
+};
 
 function closePlayer(){
 
 const panel = document.getElementById("playerPanel");
-const player = document.getElementById("player");
 
 panel.classList.remove("active");
-player.pause();
 
 }
