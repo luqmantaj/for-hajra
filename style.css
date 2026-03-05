@@ -141,3 +141,18 @@ align-items:center;
 .player-panel.active{
 bottom:0;
 }
+.player-content img{
+width:200px;
+height:200px;
+object-fit:cover;
+border-radius:8px;
+display:block;
+margin:10px auto 15px auto;
+}
+.player-content{
+display:flex;
+flex-direction:column;
+align-items:center;
+justify-content:flex-start;
+padding-top:10px;
+}
