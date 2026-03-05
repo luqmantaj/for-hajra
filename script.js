@@ -1,6 +1,13 @@
-// floating hearts
 document.addEventListener("DOMContentLoaded", function () {
 
+const player = document.getElementById("player");
+const progressBar = document.getElementById("progressBar");
+const panel = document.getElementById("playerPanel");
+const titleEl = document.getElementById("playerTitle");
+const playBtn = document.getElementById("playPauseBtn");
+
+
+// floating hearts
 const heartsContainer = document.querySelector(".hearts");
 
 for (let i = 0; i < 25; i++) {
@@ -17,19 +24,9 @@ heartsContainer.appendChild(heart);
 
 }
 
-});
-
-
-// player elements
-const player = document.getElementById("player");
-const progressBar = document.getElementById("progressBar");
-const panel = document.getElementById("playerPanel");
-const titleEl = document.getElementById("playerTitle");
-const playBtn = document.getElementById("playPauseBtn");
-
 
 // play song
-function playSong(songPath, title, artist) {
+window.playSong = function(songPath, title, artist){
 
 titleEl.innerHTML =
 title +
@@ -47,44 +44,46 @@ player.load();
 player.play();
 playBtn.innerHTML = "⏸";
 
-}
+};
 
 
 // close player
-function closePlayer() {
+window.closePlayer = function(){
 panel.classList.remove("active");
-}
+};
 
 
-// play pause toggle
-function togglePlay() {
+// toggle play pause
+window.togglePlay = function(){
 
-if (player.paused) {
+if (player.paused){
 player.play();
 playBtn.innerHTML = "⏸";
-} else {
+}else{
 player.pause();
 playBtn.innerHTML = "▶";
 }
 
-}
+};
 
 
 // progress update
-player.addEventListener("timeupdate", function () {
+player.addEventListener("timeupdate", function(){
 
-if (player.duration) {
+if (player.duration){
 progressBar.value = (player.currentTime / player.duration) * 100;
 }
 
 });
 
 
-// seek when slider moves
-progressBar.addEventListener("input", function () {
+// seeking
+progressBar.addEventListener("input", function(){
 
-if (player.duration) {
+if (player.duration){
 player.currentTime = (progressBar.value / 100) * player.duration;
 }
+
+});
 
 });
